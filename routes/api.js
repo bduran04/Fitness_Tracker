@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const { Workout } = require('../models');
-const mongoose = require("mongoose");
-const express = require("express");
+const Workout  = require('../models');
 
 router.get("/api/workouts", async (req, res) => {
     try {
@@ -13,12 +11,12 @@ router.get("/api/workouts", async (req, res) => {
     }
 });
 
-router.put("/api/workouts/:id", async ({ params, body }, res) => {
+router.put("/api/workouts/:id", async (req, res) => {
     try {
+        const id = req.params.id;
         const data = await Workout.findOneAndUpdate(
-            { _id: params.id },
-            { $push: { exercises: req.body } },
-            { new: true }
+            { _id: id },
+            { $push: { exercises: req.body } }
         );
         res.json(data);
     } catch (err) {
@@ -26,9 +24,9 @@ router.put("/api/workouts/:id", async ({ params, body }, res) => {
     }
 });
 
-router.post("/api/workouts", async ({ body }, res) => {
+router.post("/api/workouts", async (req, res) => {
     try {
-        const data = await Workout.create({})
+        const data = await Workout.create(req.body)
         res.json(data);
 
     } catch (err) {
