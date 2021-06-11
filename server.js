@@ -38,6 +38,6 @@ useFindAndModify: false }, function(err) {
 });
 
 //this is the mongo environment variable
-// mongodb+srv://belle:Password23@cluster0.cd9gj.mongodb.net/fitnesstracker?retryWrites=true&w=majority
+// mongodb+srv://belle:password23@cluster0.cd9gj.mongodb.net/fitnesstracker?retryWrites=true&w=majority
 
 //when need environment variable, add this ^
